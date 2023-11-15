@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Calculator</title>
+    <style>
+       #operand1,#operand2{
+            width:100px;
+       }
+       input{
+        width:70px;
+        align-items: center;
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 40px;
+        color: magenta;
+       }
+       div{
+        width: 400px;
+        background-color: beige;
+        align-content: center;
+        margin-left: 40%;
+        margin-top: 20%;
+        font-size: 40px;
+
+       }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="number" id="operand1">
+        <output type="text" id="op">?</output>
+        <input type="number" id="operand2">
+        <output>=</output>
+        <output type="number" id="output">??</output>
+        <br>
+        <input type="button" onclick="input_function(1)" value="1"> 
+        <input type="button" onclick="input_function(2)" value="2"> 
+        <input type="button" onclick="input_function(3)" value="3"> 
+        <input type="button" onclick="action_function('+')" value="+" class="a1"> <br>
+    
+        <input type="button" onclick="input_function(4)" value="4"> 
+        <input type="button" onclick="input_function(5)" value="5"> 
+        <input type="button" onclick="input_function(6)" value="6"> 
+        <input type="button" onclick="action_function('-')" value="-" class="a1"> <br>
+    
+    
+        <input type="button" onclick="input_function(7)" value="7"> 
+        <input type="button" onclick="input_function(8)" value="8"> 
+        <input type="button" onclick="input_function(9)" value="9"> 
+        <input type="button" onclick="action_function('*')" value="*" class="a1"> <br>
+    
+        <input type="button" onclick="final_result()" value="="> 
+        <input type="button" onclick="input_function(0)" value="0"> 
+        <input type="button" onclick="clearCalculator()" value="C">
+        <input type="button" onclick="action_function('/')" value="/" class="a1">
+    
+    </div>
+    
+    <script>
+        let first_input_value = 1;
+        let arithmetic_value = '';
+        let res = '';
+
+        function input_function(operand) {
+            const input = document.getElementById(`operand${first_input_value}`);
+            input.value += operand;
+              }
+
+        function action_function(operation) {
+            arithmetic_value = operation;
+            document.getElementById("op").innerHTML=operation;
+            
+                 first_input_value = 2;
+                 
+
+        }
+        
+        function final_result(){
+             var value1 = parseFloat(document.getElementById("operand1").value);
+            var value2 = parseFloat(document.getElementById("operand2").value);
+
+            if(arithmetic_value == "-"){
+                 res = value1-value2;
+                return document.getElementById("output").innerHTML=res;
+                
+            } 
+            else if(arithmetic_value == "+"){
+                 res = value1+value2;
+                return document.getElementById("output").innerHTML=res;
+
+            }
+            else if(arithmetic_value == "*"){
+                 res = value1*value2;
+                return document.getElementById("output").innerHTML=res;
+
+            }
+            else{
+                 res = value1/value2;
+                return document.getElementById("output").innerHTML=res;
+
+            }
+        }
+        function clearCalculator() {
+            document.getElementById('operand1').value = '';
+            document.getElementById('operand2').value = '';
+            first_input_value = 1;
+            document.getElementById('op').value='?';
+            document.getElementById('output').innerHTML='??';
+        }
+
+    </script>
+</body>
+</html>
